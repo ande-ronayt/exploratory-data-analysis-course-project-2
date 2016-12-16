@@ -1,6 +1,6 @@
 #plot4.R - coal related data
 
-plot4 <- function(){
+plot4 <- function(toPng = T){
   ##reding data
   ## This first line will likely take a few seconds. Be patient!
   NEI <- readRDS("summarySCC_PM25.rds")
@@ -12,7 +12,8 @@ plot4 <- function(){
   coalData <- SCC[coalData, ]
   coalData <- NEI[NEI$SCC %in% coalData$SCC, ]
   
-  png(filename="plot4.png")
+  if (toPng)
+      png(filename="plot4.png")
   
   g <- ggplot(coalData, aes(factor(year), Emissions))
   print(g + geom_bar(stat="identity") +
@@ -20,6 +21,7 @@ plot4 <- function(){
     labs(title=expression("PM2.5 Emissions from coal combustion-related sources in US"))
   )
   
-  dev.off()
+  if (toPng)
+      dev.off()
   
 }

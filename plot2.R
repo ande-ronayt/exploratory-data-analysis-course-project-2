@@ -1,6 +1,6 @@
 ##plot2
 
-plot2 <- function(){
+plot2 <- function(toPng = T){
   ##reding data
   ## This first line will likely take a few seconds. Be patient!
   NEI <- readRDS("summarySCC_PM25.rds")
@@ -11,7 +11,8 @@ plot2 <- function(){
   ##subset Balrimor data
   NEI_Baltimor <- subset(NEI, fips=="24510")
   
-  png(filename="plot2.png")
+  if (toPng)
+      png(filename="plot2.png")
   
   main = "Total PM2.5 Emissions From Baltimor City"
   
@@ -26,5 +27,6 @@ plot2 <- function(){
     ylab="PM2.5 Emissions (Tons)",
     main=main))
   
-  dev.off()
+  if (toPng)
+      dev.off()
 }

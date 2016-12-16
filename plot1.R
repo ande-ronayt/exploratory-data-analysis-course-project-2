@@ -1,11 +1,12 @@
 ##plot1.R - base plotting system
-plot1 <- function(){
+plot1 <- function(toPng = T){
   ##reding data
   ## This first line will likely take a few seconds. Be patient!
   NEI <- readRDS("summarySCC_PM25.rds")
   SCC <- readRDS("Source_Classification_Code.rds")
     
-  png(filename="plot1.png")
+  if (toPng)
+      png(filename="plot1.png")
   
   main = "Total PM2.5 Emissions From All US Sources"
   
@@ -20,5 +21,6 @@ plot1 <- function(){
     ylab="PM2.5 Emissions (10^6 Tons)",
     main=main))
   
-  dev.off()
+  if (toPng)
+      dev.off()
 }

@@ -1,5 +1,5 @@
 ##plot5.R - motor vehicle
-plot5 <- function(){
+plot5 <- function(toPng = T){
   ##reding data
   ## This first line will likely take a few seconds. Be patient!
   NEI <- readRDS("summarySCC_PM25.rds")
@@ -9,7 +9,8 @@ plot5 <- function(){
   #and use fips == "24510" to extract data for Baltimor City
   NEIOnRoad <- subset(NEI, fips == "24510" & type == "ON-ROAD")
   
-  png(filename="plot5.png")
+  if (toPng)
+      png(filename="plot5.png")
   
   g <- ggplot(NEIOnRoad, aes(factor(year), Emissions))
   print(g + geom_bar(stat="identity") + facet_grid(.~type) + 
@@ -17,5 +18,6 @@ plot5 <- function(){
     labs(title=expression("PM2.5 Emissions from Motor Vehicle, Baltimore City"))
   )
   
-  dev.off()
+  if (toPng)
+      dev.off()
 }
