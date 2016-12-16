@@ -111,3 +111,5 @@ plot6(F)
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+LA County has more emissions compare to Baltimore, and Emissions in LA was increasing from 1999-2005, then decreas in 2008 but still more than was in 1999
